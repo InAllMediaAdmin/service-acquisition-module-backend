@@ -1,0 +1,168 @@
+package com.iam.serviceacquisition.common.enums;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.Getter;
+
+import java.awt.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.asList;
+
+@Getter
+public enum Avatar {
+
+    // male type 1
+    AVATAR_T1_MAN_1_BLUE(1, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T1_MAN_1_GREEN(2, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T1_MAN_1_RED(3, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T1_MAN_2_BLUE(4, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T1_MAN_2_GREEN(5, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T1_MAN_2_RED(6, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T1_MAN_3_BLUE(7, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T1_MAN_3_GREEN(8, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T1_MAN_3_RED(9, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S3, Color.RED),
+
+    AVATAR_T1_MAN_4_BLUE(10, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S4, Color.BLUE),
+    AVATAR_T1_MAN_4_GREEN(11, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S4, Color.GREEN),
+    AVATAR_T1_MAN_4_RED(12, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S4, Color.RED),
+
+    AVATAR_T1_MAN_5_BLUE(13, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S5, Color.BLUE),
+    AVATAR_T1_MAN_5_GREEN(14, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S5, Color.GREEN),
+    AVATAR_T1_MAN_5_RED(15, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S5, Color.RED),
+
+    // woman type 1
+    AVATAR_T1_WOMAN_1_BLUE(16, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T1_WOMAN_1_GREEN(17, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T1_WOMAN_1_RED(18, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T1_WOMAN_2_BLUE(19, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T1_WOMAN_2_GREEN(20, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T1_WOMAN_2_RED(21, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T1_WOMAN_3_BLUE(22, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T1_WOMAN_3_GREEN(23, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T1_WOMAN_3_RED(24, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S3, Color.RED),
+
+    // man type 2
+    AVATAR_T2_MAN_1_BLUE(25, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T2_MAN_1_GREEN(26, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T2_MAN_1_RED(27, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T2_MAN_2_BLUE(28, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T2_MAN_2_GREEN(29, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T2_MAN_2_RED(30, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T2_MAN_3_BLUE(31, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T2_MAN_3_GREEN(32, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T2_MAN_3_RED(33, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S3, Color.RED),
+
+    AVATAR_T2_MAN_4_BLUE(34, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S4, Color.BLUE),
+    AVATAR_T2_MAN_4_GREEN(35, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S4, Color.GREEN),
+    AVATAR_T2_MAN_4_RED(36, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S4, Color.RED),
+
+    AVATAR_T2_MAN_5_BLUE(37, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S5, Color.BLUE),
+    AVATAR_T2_MAN_5_GREEN(38, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S5, Color.GREEN),
+    AVATAR_T2_MAN_5_RED(39, AVATAR_TYPE.T2, Gender.MALE, AVATAR_STYLE.S5, Color.RED),
+
+    // woman type 2
+    AVATAR_T2_WOMAN_1_BLUE(40, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T2_WOMAN_1_GREEN(41, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T2_WOMAN_1_RED(42, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T2_WOMAN_2_BLUE(43, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T2_WOMAN_2_GREEN(44, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T2_WOMAN_2_RED(45, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T2_WOMAN_3_BLUE(46, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T2_WOMAN_3_GREEN(47, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T2_WOMAN_3_RED(48, AVATAR_TYPE.T2, Gender.FEMALE, AVATAR_STYLE.S3, Color.RED),
+
+    // man type 3
+    AVATAR_T3_MAN_1_BLUE(49, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T3_MAN_1_GREEN(50, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T3_MAN_1_RED(51, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T3_MAN_2_BLUE(52, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T3_MAN_2_GREEN(53, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T3_MAN_2_RED(54, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T3_MAN_3_BLUE(55, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T3_MAN_3_GREEN(56, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T3_MAN_3_RED(56, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S3, Color.RED),
+
+    AVATAR_T3_MAN_4_BLUE(57, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S4, Color.BLUE),
+    AVATAR_T3_MAN_4_GREEN(58, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S4, Color.GREEN),
+    AVATAR_T3_MAN_4_RED(58, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S4, Color.RED),
+
+    AVATAR_T3_MAN_5_BLUE(59, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S5, Color.BLUE),
+    AVATAR_T3_MAN_5_GREEN(60, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S5, Color.GREEN),
+    AVATAR_T3_MAN_5_RED(61, AVATAR_TYPE.T3, Gender.MALE, AVATAR_STYLE.S5, Color.RED),
+
+    // woman type 3
+    AVATAR_T3_WOMAN_1_BLUE(62, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S1, Color.BLUE),
+    AVATAR_T3_WOMAN_1_GREEN(63, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S1, Color.GREEN),
+    AVATAR_T3_WOMAN_1_RED(64, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S1, Color.RED),
+
+    AVATAR_T3_WOMAN_2_BLUE(65, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S2, Color.BLUE),
+    AVATAR_T3_WOMAN_2_GREEN(66, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S2, Color.GREEN),
+    AVATAR_T3_WOMAN_2_RED(67, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S2, Color.RED),
+
+    AVATAR_T3_WOMAN_3_BLUE(68, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S3, Color.BLUE),
+    AVATAR_T3_WOMAN_3_GREEN(69, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S3, Color.GREEN),
+    AVATAR_T3_WOMAN_3_RED(70, AVATAR_TYPE.T3, Gender.FEMALE, AVATAR_STYLE.S3, Color.RED),
+
+    // disabled
+    AVATAR_DISABLED_MAN_1(71, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S1, Color.GRAY),
+    AVATAR_DISABLED_MAN_2(72, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S2, Color.GRAY),
+    AVATAR_DISABLED_MAN_3(73, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S3, Color.GRAY),
+    AVATAR_DISABLED_MAN_4(74, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S4, Color.GRAY),
+    AVATAR_DISABLED_MAN_5(75, AVATAR_TYPE.T1, Gender.MALE, AVATAR_STYLE.S5, Color.GRAY),
+
+    AVATAR_DISABLED_WOMAN_1(76, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S1, Color.GRAY),
+    AVATAR_DISABLED_WOMAN_2(77, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S2, Color.GRAY),
+    AVATAR_DISABLED_WOMAN_3(78, AVATAR_TYPE.T1, Gender.FEMALE, AVATAR_STYLE.S3, Color.GRAY);
+
+    private int id;
+    private AVATAR_TYPE type;
+    private Gender gender;
+    private AVATAR_STYLE style;
+    private Color color;
+
+
+    Avatar(int id, AVATAR_TYPE type, Gender gender, AVATAR_STYLE style, Color color) {
+        this.id = id;
+        this.gender = gender;
+        this.color = color;
+        this.type = type;
+        this.style = style;
+    }
+
+    public static Avatar fromId(Integer id) {
+        return asList(Avatar.values()).stream().filter(a -> a.id == id).findFirst()
+                .orElseThrow(() -> new EntityNotFoundException("Avatar not found"));
+    }
+
+    public static Set<Avatar> getAvatarsByGender(Gender gender) {
+        return Arrays.stream(values()).filter(a -> a.gender == gender).collect(Collectors.toSet());
+    }
+
+    public static Avatar getRandomAvatar(Gender gender) {
+        //get a random avatar from the output of getAvatarsByGender
+        List<Avatar> avatarsByGender = getAvatarsByGender(gender).stream().filter(a -> a.color != Color.GRAY).collect(Collectors.toList());
+        return avatarsByGender.get(new Random().nextInt(avatarsByGender.size()));
+    }
+
+    private enum AVATAR_TYPE {
+        T1,T2,T3;
+    }
+
+    private enum AVATAR_STYLE {
+        S1,S2,S3,S4,S5;
+    }
+}
