@@ -18,7 +18,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
   private static final String HEADER = "Authorization";
   private static final String PREFIX = "Bearer ";
-  private static final String SECRET = "bhFS(rCE&j7e2#BCHogL2Jg+!]{iuwN{_<{Hgj]|v%K1y0\\io`0A\\JC0,j>5,aY\n";
+  private static final String SECRET = "mySecretKey";
 
   @Override
   protected void doFilterInternal(
