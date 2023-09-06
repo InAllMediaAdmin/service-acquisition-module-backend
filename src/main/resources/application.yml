@@ -36,4 +36,104 @@ spring:
     url: jdbc:mariadb://localhost:3306
     user: root
     password: root
-    schemas: service-management
+    schemas: service-acquisition
+
+---
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    url: ${conection_string}
+    username: ${username}
+    password: ${password}
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: ${conection_string}
+    user: ${username}
+    password: ${password}
+    schemas: service-acquisition-qa
+
+---
+spring:
+  config:
+    activate:
+      on-profile: stage
+  datasource:
+    url: ${conection_string}
+    username: ${username}
+    password: ${password}
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: ${conection_string}
+    user: ${username}
+    password: ${password}
+    schemas: service-acquisition-stage
+
+---
+spring:
+  config:
+    activate:
+      on-profile: uat
+  datasource:
+    url: ${conection_string}
+    username: ${username}
+    password: ${password}
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: ${conection_string}
+    user: ${username}
+    password: ${password}
+    schemas: service-acquisition-prod
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: ${conection_string}
+    username: ${username}
+    password: ${password}
+    driverClassName: org.mariadb.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: false
+    hibernate:
+      ddl-auto: none
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    url: ${conection_string}
+    user: ${username}
+    password: ${password}
+    schemas: service-acquisition-prod
