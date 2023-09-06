@@ -1,13 +1,16 @@
 package com.iam.serviceacquisition.api;
 
-import com.iam.serviceacquisition.model.dto.TalentDTO;
+import com.iam.user.account.common.model.talent.SearchRequestDTO;
+import com.iam.user.account.common.model.talent.TalentDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.POST;
+import retrofit2.http.GET;
+
+import java.util.List;
 
 public interface TalentClient {
 
-    @POST("/talent")
-    Call<TalentDTO> createTalent(@Body final TalentDTO talentDTO);
+    @GET("/talent/by-search-request")
+    Call<List<TalentDTO>> getTalentsBySearchRequest(@Body SearchRequestDTO searchRequestDTO);
 
 }
