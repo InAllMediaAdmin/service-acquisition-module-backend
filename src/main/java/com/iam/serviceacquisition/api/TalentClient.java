@@ -1,7 +1,7 @@
 package com.iam.serviceacquisition.api;
 
-import com.iam.user.account.common.model.acquisition.SearchRequestDTO;
-import com.iam.user.account.common.model.acquisition.TalentDTO;
+import com.iam.user.account.common.model.talent.SearchRequestDTO;
+import com.iam.user.account.common.model.talent.TalentDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
