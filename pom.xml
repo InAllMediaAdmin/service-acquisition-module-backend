@@ -20,7 +20,7 @@
 		<java.version>17</java.version>
 		<retrofit.version>2.7.1</retrofit.version>
 		<h2database.version>2.1.214</h2database.version>
-		<user.account.common.version>0.1.16</user.account.common.version>
+		<user.account.common.version>0.1.17</user.account.common.version>
 		<modelmapper.version>3.1.1</modelmapper.version>
 	</properties>
 
@@ -141,6 +141,12 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.10.0</version>
 		</dependency>
 	</dependencies>
 

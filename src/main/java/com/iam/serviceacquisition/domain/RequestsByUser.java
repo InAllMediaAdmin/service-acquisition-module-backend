@@ -1,0 +1,17 @@
+package com.iam.serviceacquisition.domain;
+
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@EqualsAndHashCode
+public class RequestsByUser {
+
+    private long userId;
+
+    private long numberOfSearchRequests;
+
+}
