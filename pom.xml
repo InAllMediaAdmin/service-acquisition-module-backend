@@ -22,6 +22,7 @@
 		<h2database.version>2.1.214</h2database.version>
 		<user.account.common.version>0.1.16</user.account.common.version>
 		<modelmapper.version>3.1.1</modelmapper.version>
+		<flyway.version>9.16.3</flyway.version>
 		<mailer.common.version>0.2.1</mailer.common.version>
 	</properties>
 
@@ -59,6 +60,12 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<version>${flyway.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+			<version>${flyway.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -167,6 +174,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${flyway.version}</version>
 			</plugin>
 		</plugins>
 		<extensions>
