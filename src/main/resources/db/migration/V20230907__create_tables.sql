@@ -6,7 +6,6 @@ create table if not exists company
     client_id bigint       null
     );
 
-
 create table if not exists country
 (
     id   bigint       not null
@@ -14,12 +13,17 @@ create table if not exists country
     name varchar(255) not null
     );
 
-
-create index if not exists flyway_schema_history_s_idx
-    on flyway_schema_history (success);
-
-create sequence hibernate_sequence MINVALUE 1000 START WITH 1000;
-     
+create table if not exists hibernate_sequence
+(
+    next_not_cached_value bigint(21)          not null,
+    minimum_value         bigint(21)          not null,
+    maximum_value         bigint(21)          not null,
+    start_value           bigint(21)          not null comment 'start value when sequences is created or value if RESTART is used',
+    increment             bigint(21)          not null comment 'increment value',
+    cache_size            bigint(21) unsigned not null,
+    cycle_option          tinyint(1) unsigned not null comment '0 if no cycles are allowed, 1 if the sequence should begin a new cycle when maximum_value is passed',
+    cycle_count           bigint(21)          not null comment 'How many cycles have been done'
+    );
 
 create table if not exists industry
 (
@@ -27,7 +31,6 @@ create table if not exists industry
     primary key,
     description varchar(255) null
     );
-     
 
 create table if not exists phone
 (
@@ -37,7 +40,6 @@ create table if not exists phone
     country_code varchar(255) null,
     phone_number varchar(255) null
     );
-     
 
 create table if not exists search_filter
 (
@@ -56,7 +58,6 @@ create table if not exists search_filter
     years_working_must        bit           null,
     years_working_value       int           null
     );
-     
 
 create table if not exists combo_structure
 (
@@ -66,7 +67,6 @@ create table if not exists combo_structure
     constraint FKd1q1x6sbtcgknox08tpy07wlp
     foreign key (filter_id) references search_filter (id)
     );
-     
 
 create table if not exists search_strategies_values
 (
@@ -75,7 +75,18 @@ create table if not exists search_strategies_values
     constraint FK3w4u82q8kfsasfyeohufnm6hm
     foreign key (search_filter_id) references search_filter (id)
     );
-     
+
+create table if not exists search_talent_filter_secondary_technologies
+(
+    search_talent_filter_id   bigint not null,
+    secondary_technologies_id bigint not null
+);
+
+create table if not exists search_talent_filter_strategies
+(
+    search_talent_filter_id bigint not null,
+    strategies_id           bigint not null
+);
 
 create table if not exists stakeholder
 (
@@ -90,7 +101,6 @@ create table if not exists stakeholder
     constraint FK_stakeholder_phone
     foreign key (phone_id) references phone (id)
     );
-     
 
 create table if not exists strategy
 (
@@ -99,21 +109,12 @@ create table if not exists strategy
     description varchar(255) null
     );
 
-
-create table if not exists search_talent_filter_strategies
-(
-    search_talent_filter_id bigint not null,
-    strategies_id           bigint not null
-    );
-     
-
 create table if not exists talent_degree_certification
 (
     id          bigint       not null
     primary key,
     description varchar(255) null
     );
-     
 
 create table if not exists talent_degree_education
 (
@@ -121,7 +122,6 @@ create table if not exists talent_degree_education
     primary key,
     description varchar(255) null
     );
-     
 
 create table if not exists talent_profit
 (
@@ -130,14 +130,12 @@ create table if not exists talent_profit
     value decimal(19, 2) null,
     date  datetime       null
     );
-     
 
 create table if not exists talent_resume_highlight_strategy
 (
     id bigint not null
     primary key
 );
-     
 
 create table if not exists talent_resume_highlight
 (
@@ -147,7 +145,6 @@ create table if not exists talent_resume_highlight
     constraint FKmrw590so01ikrhs31kkd1uxf6
     foreign key (highlight_strategy_id) references talent_resume_highlight_strategy (id)
     );
-     
 
 create table if not exists talent_resume_highlight_strategy_strategies
 (
@@ -158,7 +155,6 @@ create table if not exists talent_resume_highlight_strategy_strategies
     constraint FKnqh7gf6yhaicacgvylnr7m0rt
     foreign key (talent_resume_highlight_strategy_id) references talent_resume_highlight_strategy (id)
     );
-     
 
 create table if not exists team_position
 (
@@ -167,7 +163,6 @@ create table if not exists team_position
     position_index bigint       null,
     name           varchar(255) null
     );
-     
 
 create table if not exists technology
 (
@@ -175,15 +170,6 @@ create table if not exists technology
     primary key,
     description varchar(255) null
     );
-     
-
-create table if not exists search_talent_filter_secondary_technologies
-(
-    search_talent_filter_id   bigint not null,
-    secondary_technologies_id bigint not null
-
-    );
-
 
 create table if not exists technology_roles
 (
@@ -193,7 +179,6 @@ create table if not exists technology_roles
     constraint FK2urnf3ofm4kbldg44xag3hfck
     foreign key (technology_id) references technology (id)
     );
-     
 
 create table if not exists time_zone
 (
@@ -205,7 +190,6 @@ create table if not exists time_zone
     time_zone_offset   decimal(4, 2) null,
     country            varchar(255)  null
     );
-     
 
 create table if not exists adhoc_city
 (
@@ -216,7 +200,6 @@ create table if not exists adhoc_city
     constraint FKsy4x3j1hdrdktn6idq0qhnswr
     foreign key (time_zone_id) references time_zone (id)
     );
-     
 
 create table if not exists customer_lead
 (
@@ -240,7 +223,6 @@ create table if not exists customer_lead
     constraint FK_customer_lead_time_zone_id
     foreign key (time_zone_id) references time_zone (id)
     );
-     
 
 create table if not exists client_partner_request
 (
@@ -265,7 +247,6 @@ create table if not exists client_partner_request
     constraint FK_cp_request_time_zone
     foreign key (time_zone_id) references time_zone (id)
     );
-     
 
 create table if not exists client_partner_request_technologies
 (
@@ -276,7 +257,6 @@ create table if not exists client_partner_request_technologies
     constraint FK_cp_request_technologies_technology
     foreign key (technology_id) references technology (id)
     );
-     
 
 create table if not exists search_request
 (
@@ -292,7 +272,6 @@ create table if not exists search_request
     constraint FKjeovit2mxk1w1t9p0yvxuk7s7
     foreign key (filter_id) references search_filter (id)
     );
-     
 
 create table if not exists search_position_slot
 (
@@ -310,7 +289,6 @@ create table if not exists search_position_slot
     constraint FKl4b9qhds1yau9h2ujs5l2wg69
     foreign key (combo_id) references combo_structure (id)
     );
-     
 
 create table if not exists search_position_slot_main_technologies
 (
@@ -321,7 +299,6 @@ create table if not exists search_position_slot_main_technologies
     constraint FK9n2a27udkbk53v4hamn1uqeaw
     foreign key (main_technologies_id) references technology (id)
     );
-     
 
 create table if not exists search_position_slot_secondary_technologies
 (
@@ -332,7 +309,6 @@ create table if not exists search_position_slot_secondary_technologies
     constraint FK4cbxiharfko123ratf1wrpc7t
     foreign key (search_position_slot_id) references search_position_slot (id)
     );
-     
 
 create table if not exists search_talent
 (
@@ -348,7 +324,6 @@ create table if not exists search_talent
     constraint FKi13p644xxcnum2ubjkqnaahmx
     foreign key (time_zone_id) references time_zone (id)
     );
-     
 
 create index if not exists FK96fgcyon9s9jsj6sx4va0wmcf
     on search_talent (user);
@@ -362,7 +337,6 @@ create table if not exists search_talent_roles
     constraint FKl8mifrq53l78dymq22pepdimx
     foreign key (id_search_talent) references search_talent (id)
     );
-     
 
 create table if not exists search_talent_refinement
 (
@@ -377,7 +351,6 @@ create table if not exists search_talent_refinement
     constraint FKmnsqnyr70gt6dg8t35v9acd8m
     foreign key (main_technology) references technology (id)
     );
-     
 
 create table if not exists team
 (
@@ -396,7 +369,6 @@ create table if not exists team
     constraint FKl4b5qhds1yau9h2ujs5l2wg69
     foreign key (search_request_id) references search_request (id)
     );
-     
 
 create table if not exists talent
 (
@@ -439,7 +411,6 @@ create table if not exists talent
     constraint FKtq7nfowdc31ti35gjf2e0397y
     foreign key (phone_id) references phone (id)
     );
-     
 
 create table if not exists talent_certification
 (
@@ -453,7 +424,6 @@ create table if not exists talent_certification
     constraint FKre94lt18tuxkty5q95rsdthts
     foreign key (talent_id) references talent (id)
     );
-     
 
 create table if not exists talent_education
 (
@@ -469,7 +439,6 @@ create table if not exists talent_education
     constraint FKsa076rtiottfgc75p9ldjae4s
     foreign key (degree_id) references talent_degree_education (id)
     );
-     
 
 create table if not exists talent_experience
 (
@@ -495,7 +464,6 @@ create table if not exists talent_experience
     constraint FKa1oelgipf4fmdqod9elattj3x
     foreign key (main_technology) references technology (id)
     );
-     
 
 create table if not exists talent_experience_additional_technologies
 (
@@ -506,7 +474,6 @@ create table if not exists talent_experience_additional_technologies
     constraint FKlyff06hojaxr3ost8gq7hjqji
     foreign key (talent_experience_id) references talent_experience (id)
     );
-     
 
 create table if not exists talent_highlight
 (
@@ -522,7 +489,6 @@ create table if not exists talent_highlight
     constraint talent_highlight_ibfk_1
     foreign key (talent_id) references talent (id)
     );
-     
 
 create index if not exists talent_id
     on talent_highlight (talent_id);
@@ -540,7 +506,6 @@ create table if not exists talent_industry_expertise
     constraint FKcrwx13nr219w0tdlcm92dt0ps
     foreign key (talent_id) references talent (id)
     );
-     
 
 create table if not exists talent_language_certification
 (
@@ -553,7 +518,6 @@ create table if not exists talent_language_certification
     constraint FKqphyrebswmy2rt834j3migl19
     foreign key (talent_id) references talent (id)
     );
-     
 
 create table if not exists talent_main_technologies
 (
@@ -564,7 +528,6 @@ create table if not exists talent_main_technologies
     constraint FKcgmfs0ejxvm1fbyqhd8ja80f9
     foreign key (main_technologies_id) references technology (id)
     );
-     
 
 create table if not exists talent_roles
 (
@@ -574,7 +537,6 @@ create table if not exists talent_roles
     constraint FKba04kf24apllh9q47kdiia8y9
     foreign key (talent_id) references talent (id)
     );
-     
 
 create table if not exists talent_secondary_technologies
 (
@@ -585,7 +547,6 @@ create table if not exists talent_secondary_technologies
     constraint FKqqd9x3xj5gloh0ivm9woywghk
     foreign key (talent_id) references talent (id)
     );
-     
 
 create table if not exists talent_soft_skill
 (
@@ -604,7 +565,6 @@ create table if not exists talent_soft_skill
     constraint fk_talent_experience_id
     foreign key (talent_experience_id) references talent_experience (id)
     );
-     
 
 create table if not exists talent_technical_profiles
 (
@@ -618,7 +578,6 @@ create table if not exists talent_technical_profiles
     constraint talent_technical_profiles_ibfk_1
     foreign key (talent_id) references talent (id)
     );
-     
 
 create index if not exists talent_id
     on talent_technical_profiles (talent_id);
@@ -637,7 +596,6 @@ create table if not exists team_proposal
     constraint FKl0hp4e10pafm4ywr37gs8301b
     foreign key (time_zone_id) references time_zone (id)
     );
-     
 
 create table if not exists team_request
 (
@@ -666,7 +624,6 @@ create table if not exists team_request
     constraint FKtctko3jheeky34b3lj7kmmwij
     foreign key (team_id) references team (id)
     );
-     
 
 create table if not exists due_date
 (
@@ -678,7 +635,6 @@ create table if not exists due_date
     constraint FKbi4je5b7c982g4r5nwr5083sq
     foreign key (team_request_id) references team_request (id)
     );
-     
 
 create table if not exists talent_resume
 (
@@ -706,7 +662,6 @@ create table if not exists talent_resume
     constraint FKqrj5tvlu1dkhqv6qgdsudsthp
     foreign key (team_request_id) references team_request (id)
     );
-     
 
 create table if not exists talent_resume_certifications
 (
@@ -717,7 +672,6 @@ create table if not exists talent_resume_certifications
     constraint FKjxxcwaqs3t0hcwnavpk3d12oq
     foreign key (talent_resume_id) references talent_resume (id)
     );
-     
 
 create table if not exists talent_resume_educations
 (
@@ -728,7 +682,6 @@ create table if not exists talent_resume_educations
     constraint FKtmwubws4v71j26lfx7m2cnxve
     foreign key (talent_resume_id) references talent_resume (id)
     );
-     
 
 create table if not exists talent_resume_experiences
 (
@@ -739,7 +692,6 @@ create table if not exists talent_resume_experiences
     constraint FKgcs6il2nw3jbe0qg3inmgn4p4
     foreign key (talent_resume_id) references talent_resume (id)
     );
-     
 
 create table if not exists talent_resume_industry_expertises
 (
@@ -750,7 +702,6 @@ create table if not exists talent_resume_industry_expertises
     constraint FKdp9xauqa4vpkqsua7p3g49597
     foreign key (industry_expertises_id) references talent_industry_expertise (id)
     );
-     
 
 create table if not exists talent_resume_language_certifications
 (
@@ -761,7 +712,6 @@ create table if not exists talent_resume_language_certifications
     constraint FKqp5101de72j2yu04yj43s1oaa
     foreign key (talent_resume_id) references talent_resume (id)
     );
-     
 
 create table if not exists talent_resume_soft_skills
 (
@@ -772,7 +722,6 @@ create table if not exists talent_resume_soft_skills
     constraint FKclgw6fdk3ip39pamhcqrt99fy
     foreign key (talent_resume_id) references talent_resume (id)
     );
-     
 
 create table if not exists team_position_slot
 (
@@ -791,7 +740,6 @@ create table if not exists team_position_slot
     constraint FKqaeruu4e1n4muvk8vq0kr8cd9
     foreign key (position_slot_id) references search_position_slot (id)
     );
-     
 
 create table if not exists activity
 (
@@ -813,7 +761,6 @@ create table if not exists activity
     constraint FKbd3idxs6qe63isq9flsww3dvy
     foreign key (team_position_slot_id) references team_position_slot (id)
     );
-     
 
 create index if not exists FK9vtn4x1xk8cwb4s4pvfqz5l19
     on activity (author_id);
@@ -830,7 +777,6 @@ create table if not exists comment
     constraint FK4b1wtk4o1wy7pqjspmgfa4a6o
     foreign key (activity_id) references activity (id)
     );
-     
 
 create index if not exists FKa7mgwkohte1r4bdvvb5xxl7e4
     on team_request (client_id);
@@ -847,7 +793,6 @@ create table if not exists user_profile
     primary key,
     has_request bit default b'1' not null
 );
-     
 
 create table if not exists user_profile_roles
 (
@@ -856,5 +801,3 @@ create table if not exists user_profile_roles
     constraint FKt1rrgpxb7w93li06xbr0oqxo7
     foreign key (user_profile_id) references user_profile (id)
     );
-     
-
