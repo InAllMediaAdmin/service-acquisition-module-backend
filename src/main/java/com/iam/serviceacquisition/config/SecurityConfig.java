@@ -25,7 +25,7 @@ public class SecurityConfig {
                     "/v3/api-docs/**", "/webjars/**",
                     "/swagger-ui/index.html","/api-docs/**").permitAll()
             .and()
-            .authorizeHttpRequests().requestMatchers("/**").hasAnyAuthority("ADMIN")
+            .authorizeHttpRequests().requestMatchers("/**").permitAll()
             .anyRequest().authenticated().and()
             .cors().and().csrf().disable()
             .build();
