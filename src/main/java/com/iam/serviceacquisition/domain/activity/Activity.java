@@ -27,9 +27,7 @@ public class Activity {
     @Enumerated(EnumType.STRING)
     private ActivityType type;
 
-    @ManyToOne
-    @JoinColumn(name = "talent_id")
-    private Talent talent;
+    private Long talentId;
 
     @ManyToOne
     @JoinColumn(name = "team_request_id")

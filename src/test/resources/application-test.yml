@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:teamfinder;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=10000;MODE=MySQL
+    url: jdbc:h2:mem:service-acquisition;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=10000;MODE=MySQL
     username: sa
     password:
   jpa:
@@ -13,5 +13,5 @@ spring:
     url: jdbc:h2:mem
     user: sa
     password:
-    schemas: teamfinder
+    schemas: service-acquisition
 

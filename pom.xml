@@ -20,8 +20,9 @@
 		<java.version>17</java.version>
 		<retrofit.version>2.7.1</retrofit.version>
 		<h2database.version>2.1.214</h2database.version>
-		<user.account.common.version>0.1.17</user.account.common.version>
+		<user.account.common.version>0.1.16</user.account.common.version>
 		<modelmapper.version>3.1.1</modelmapper.version>
+		<mailer.common.version>0.2.1</mailer.common.version>
 	</properties>
 
 	<dependencies>
@@ -79,6 +80,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2database.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -101,6 +103,11 @@
 			<groupId>com.squareup.retrofit2</groupId>
 			<artifactId>converter-scalars</artifactId>
 			<version>${retrofit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>3.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -147,6 +154,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
 			<version>1.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.iam</groupId>
+			<artifactId>mailer-common-library</artifactId>
+			<version>${mailer.common.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -1,9 +1,10 @@
 package com.iam.serviceacquisition.service;
 
 import com.iam.serviceacquisition.domain.Team;
+import com.iam.serviceacquisition.domain.dto.SearchRequestDTO;
+import com.iam.serviceacquisition.domain.search.dto.SearchTeamResponse;
 import com.iam.user.account.common.model.UserDTO;
-import com.iam.user.account.common.model.talent.SearchRequestDTO;
-import com.iam.user.account.common.model.talent.search.SearchTeamResponse;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

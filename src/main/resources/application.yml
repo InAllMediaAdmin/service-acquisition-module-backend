@@ -37,7 +37,9 @@ spring:
     user: root
     password: root
     schemas: service-acquisition
-
+iam:
+  user:
+    account-url: ${account-url:https://qa-user-account-service.coderfull.com}
 ---
 spring:
   config:
@@ -63,6 +65,9 @@ spring:
     password: ${password}
     schemas: service-acquisition-qa
 
+iam:
+  user:
+    account-url: ${account-url:https://qa-user-account-service.coderfull.com}
 ---
 spring:
   config:
@@ -87,7 +92,9 @@ spring:
     user: ${username}
     password: ${password}
     schemas: service-acquisition-stage
-
+iam:
+  user:
+    account-url: ${account-url:https://stage-user-account-service.coderfull.com}
 ---
 spring:
   config:
@@ -112,7 +119,9 @@ spring:
     user: ${username}
     password: ${password}
     schemas: service-acquisition-prod
-
+iam:
+  user:
+    account-url: ${account-url:https://uat-user-account-service.coderfull.com}
 ---
 spring:
   config:
@@ -137,3 +146,7 @@ spring:
     user: ${username}
     password: ${password}
     schemas: service-acquisition-prod
+
+iam:
+  user:
+    account-url: ${account-url:https://user-account-service.coderfull.com}
