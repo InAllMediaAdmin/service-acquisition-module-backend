@@ -605,7 +605,6 @@ create table if not exists team_request
     due_date                      date         null,
     lead_name                     varchar(255) null,
     requested_date                date         null,
-    client_id                     bigint       null,
     talent_agent_id               bigint       null,
     team_id                       bigint       null,
     client_partner_id             bigint       null,
@@ -777,9 +776,6 @@ create table if not exists comment
     constraint FK4b1wtk4o1wy7pqjspmgfa4a6o
     foreign key (activity_id) references activity (id)
     );
-
-create index if not exists FKa7mgwkohte1r4bdvvb5xxl7e4
-    on team_request (client_id);
 
 create index if not exists FKevv5sma7csybcjoldpjwuuf5s
     on team_request (client_partner_id);
