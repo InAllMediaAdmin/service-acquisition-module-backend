@@ -23,6 +23,7 @@ public interface CustomerLeadRepository extends GenericRepository<CustomerLead, 
             "     left join cl.company c " +
             "     left join cl.stakeholder s " +
             "Where 1=1 " +
+            "      AND cl.clientPartner = :clientPartnerId " +
             "      AND (:companyName is null or c.name like %:companyName%) " +
             "      AND (:industryId is null or cl.industry.id = :industryId) " +
             "      AND (:contactName is null or CONCAT(s.firstName, ' ', s.lastName) like %:contactName%) " +
@@ -42,5 +43,6 @@ public interface CustomerLeadRepository extends GenericRepository<CustomerLead, 
                                                    boolean isArchived,
                                                    boolean hasFilterNotInStatus,
                                                    boolean hasNoTeamRequest,
-                                                   boolean hasStatusSharedWithClient);
+                                                   boolean hasStatusSharedWithClient,
+                                                   Long clientPartnerId);
 }
