@@ -76,6 +76,7 @@ public class CustomerLeadService extends AbstractGenericService<CustomerLead, Lo
                                                           Optional<String> leadProjectName,
                                                           boolean isArchived,
                                                           Optional<TeamRequestFilterStatus> lastRequestStatus) {
+        UserDTO currentUser = userAccountService.getCurrentUser();
         if (isArchived){
             teamRequestStatusListFilter = List.of(TeamRequestStatus.CANCELED);
         } else if (CollectionUtils.isEmpty(teamRequestStatusListFilter)) {
@@ -99,7 +100,7 @@ public class CustomerLeadService extends AbstractGenericService<CustomerLead, Lo
 
         return customerLeadRepository.findCustomerLeadLandingPage(pageable, companyName, teamRequestStatusListFilter,
                 industryId, contactName, leadProjectName, isArchived, hasFilterNotInStatus,
-                hasNoTeamRequest, hasStatusSharedWithClient);
+                hasNoTeamRequest, hasStatusSharedWithClient, currentUser.getId());
     }
 
     @Transactional
