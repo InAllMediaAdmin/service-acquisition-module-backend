@@ -26,8 +26,8 @@ spring:
   jpa:
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        show_sql: false
+        format_sql: false
     hibernate:
       ddl-auto: none
   flyway:
@@ -56,10 +56,10 @@ spring:
         show_sql: false
         format_sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   flyway:
-    enabled: false
-    baseline-on-migrate: false
+    enabled: true
+    baseline-on-migrate: true
     url: ${conection_string}
     user: ${username}
     password: ${password}
@@ -111,10 +111,10 @@ spring:
         show_sql: false
         format_sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   flyway:
-    enabled: false
-    baseline-on-migrate: false
+    enabled: true
+    baseline-on-migrate: true
     url: ${conection_string}
     user: ${username}
     password: ${password}
@@ -138,10 +138,10 @@ spring:
         show_sql: false
         format_sql: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   flyway:
-    enabled: false
-    baseline-on-migrate: false
+    enabled: true
+    baseline-on-migrate: true
     url: ${conection_string}
     user: ${username}
     password: ${password}

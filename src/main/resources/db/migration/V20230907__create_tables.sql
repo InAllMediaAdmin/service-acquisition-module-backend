@@ -1,3 +1,22 @@
+CREATE TABLE IF NOT EXISTS hibernate_sequence
+(
+    sequence_name         VARCHAR(255)       NOT NULL,
+    next_not_cached_value BIGINT(21)         NOT NULL DEFAULT 1,
+    minimum_value         BIGINT(21)         NOT NULL DEFAULT 1,
+    maximum_value         BIGINT(21)         NOT NULL DEFAULT 9223372036854775807,
+    start_value           BIGINT(21)         NOT NULL DEFAULT 1 COMMENT 'start value when sequences is created or value if RESTART is used',
+    increment             BIGINT(21)         NOT NULL DEFAULT 1 COMMENT 'increment value',
+    cache_size            BIGINT(21) UNSIGNED NOT NULL DEFAULT 1,
+    cycle_option          TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0 if no cycles are allowed, 1 if the sequence should begin a new cycle when maximum_value is passed',
+    cycle_count           BIGINT(21)         NOT NULL DEFAULT 0 COMMENT 'How many cycles have been done',
+    PRIMARY KEY (sequence_name)
+    );
+
+INSERT INTO hibernate_sequence
+(sequence_name, next_not_cached_value, minimum_value, maximum_value, start_value, increment, cache_size, cycle_option, cycle_count)
+VALUES
+    ('acquisition_seq', 1, 1, 9223372036854775807, 1, 1, 1, 0, 0);
+
 create table if not exists company
 (
     id        bigint       not null
@@ -11,18 +30,6 @@ create table if not exists country
     id   bigint       not null
     primary key,
     name varchar(255) not null
-    );
-
-create table if not exists hibernate_sequence
-(
-    next_not_cached_value bigint(21)          not null,
-    minimum_value         bigint(21)          not null,
-    maximum_value         bigint(21)          not null,
-    start_value           bigint(21)          not null comment 'start value when sequences is created or value if RESTART is used',
-    increment             bigint(21)          not null comment 'increment value',
-    cache_size            bigint(21) unsigned not null,
-    cycle_option          tinyint(1) unsigned not null comment '0 if no cycles are allowed, 1 if the sequence should begin a new cycle when maximum_value is passed',
-    cycle_count           bigint(21)          not null comment 'How many cycles have been done'
     );
 
 create table if not exists industry
