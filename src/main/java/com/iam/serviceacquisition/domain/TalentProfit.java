@@ -1,13 +1,11 @@
 package com.iam.serviceacquisition.domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -18,7 +16,10 @@ import java.time.LocalDateTime;
 public class TalentProfit {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.TABLE, generator="table-generator")
+    @TableGenerator(name="table-generator", table="hibernate_sequence",
+            pkColumnName="sequence_name", valueColumnName="next_not_cached_value",
+            pkColumnValue="acquisition_seq", allocationSize=1)
     private Long id;
 
     private BigDecimal value;

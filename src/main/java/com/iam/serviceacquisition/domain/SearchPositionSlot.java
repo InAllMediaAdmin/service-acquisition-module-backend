@@ -18,8 +18,12 @@ import static java.util.stream.Collectors.toList;
 @Setter
 @Entity
 public class SearchPositionSlot {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="table-generator")
+    @TableGenerator(name="table-generator", table="hibernate_sequence",
+            pkColumnName="sequence_name", valueColumnName="next_not_cached_value",
+            pkColumnValue="acquisition_seq", allocationSize=1)
     private Long id;
 
     @Column(name = "role")

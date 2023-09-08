@@ -32,8 +32,11 @@ public class Talent implements Cloneable {
     private static final long SEARCH_DAYS_MAX = 30;
 
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="table-generator")
+    @TableGenerator(name="table-generator", table="hibernate_sequence",
+            pkColumnName="sequence_name", valueColumnName="next_not_cached_value",
+            pkColumnValue="acquisition_seq", allocationSize=1)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "team_id")
@@ -249,7 +252,7 @@ public class Talent implements Cloneable {
 
     /* Deep copy of a talent instance */
     public Talent clone() {
-        return this.toBuilder().id(0)
+        return this.toBuilder().id(0L)
                 .languageCertifications(isEmpty(languageCertifications) ? EMPTY_LIST : newArrayList(languageCertifications))
                 .experiences(isEmpty(experiences) ? EMPTY_SET : newHashSet(experiences))
                 .certifications(isEmpty(certifications) ? EMPTY_LIST : newArrayList(certifications))

@@ -20,10 +20,13 @@ import java.util.List;
 @Setter
 @Entity
 public class TalentResume {
-    @Id
-    @GeneratedValue
-    private Long id;
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.TABLE, generator="table-generator")
+    @TableGenerator(name="table-generator", table="hibernate_sequence",
+            pkColumnName="sequence_name", valueColumnName="next_not_cached_value",
+            pkColumnValue="acquisition_seq", allocationSize=1)
+    private Long id;
     @Column(name = "adhoc")
     private Boolean adhoc;
 
