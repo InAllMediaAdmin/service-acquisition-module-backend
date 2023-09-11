@@ -1,5 +1,6 @@
 package com.iam.serviceacquisition.service;
 
+import com.iam.serviceacquisition.exception.ValidationException;
 import com.iam.user.account.common.api.UserAccountClient;
 import com.iam.user.account.common.enums.UserRole;
 import com.iam.user.account.common.model.UserDTO;
@@ -35,8 +36,7 @@ public class UserAccountService {
                 throw new ResponseStatusException(statusCode, response.message());
             }
         } catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Get Current User Error", e);
+            throw new ValidationException("Get Current User Error", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
     }
 
@@ -50,8 +50,7 @@ public class UserAccountService {
                 throw new ResponseStatusException(statusCode, response.message());
             }
         } catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Get ALL Users Error", e);
+            throw new ValidationException("Get ALL Users Error", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
     }
 
@@ -67,8 +66,7 @@ public class UserAccountService {
                 throw new ResponseStatusException(statusCode, response.message());
             }
         } catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR, "Find User Error", e);
+            throw new ValidationException("Find User Error", HttpStatus.INTERNAL_SERVER_ERROR.value());
         }
     }
 

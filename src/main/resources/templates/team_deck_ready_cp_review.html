@@ -1,0 +1,204 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        a {
+            text-decoration: none;
+        }
+        ul {
+            padding-left: 15px;
+        }
+        .border-detail {
+            width: 4px;
+            border: 1px solid #D9D9D9;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .brand {
+            display: inline-block;
+            margin-left: 0px;
+            font-weight: 100;
+            font-size: 18px;
+        }
+        .check-button {
+            background-color: #25ACE1;
+            border: none;
+            border-radius: 3px;
+            color: #FFFFFF;
+            padding: 12px 0px;
+            width: 100%;
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer !important;
+            height: 50px;
+        }
+        .check-button-secondary {
+            gap: 5px;
+            color: #000;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-right: 10px;
+            margin-bottom: 30px;
+            display: inline-flex;
+            background-color: #fff;
+            border: 1px solid #C3D0E0;
+            box-shadow: -1px 7px 17px 0px #A3B7CE3B;
+        }
+        .label-inline {
+            display: inline;
+        }
+        .edit-button {
+            background-color: #FFFFFF;
+            border-style: solid;
+            border-color: #727272;
+            border-radius: 3px;
+            color: #727272;
+            padding: 12px 0px;
+            width: 237px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer !important;
+            height: 50px;
+        }
+        .company-link {
+            color: #25ACE1 !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: block;
+        }
+        .platform-link {
+            color: #25ACE1 !important;
+            text-decoration: underline;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer !important;
+        }
+        .data-column {
+            padding: 13px 15px;
+        }
+        .data-container {
+            overflow: hidden;
+            border: 1.5px solid #D9D9D9;
+            border-left: transparent;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+        }
+        html, body{
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+        }
+        .key-label {
+            font-weight: 600;
+            min-width: 83px;
+            padding: 0px 5px;
+        }
+        .image-logo {
+            height: 29px;
+            width: 70px;
+        }
+        .ico-coderfull {
+            height: 20px;
+            width: 100px;
+            top: 5px;
+            position: relative;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            font-size: 14px;
+        }
+        .text {
+            font-size: 13px;
+            color: #11264E;
+            line-height: 18px;
+            margin: 0 0 5px 0;
+        }
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            color: #25ACE1;
+            font-weight: 200;
+            font-size: 36px;
+            line-height: 42px;
+            margin-top: 0;
+            margin-bottom: 27px;
+        }
+        .main-subtitle {
+            display: inline-block;
+            margin-left: 300px;
+            font-weight: 100;
+            font-size: 18px;
+        }
+        .with-margin {
+            margin-bottom: 10px;
+        }
+        .wrapper {
+            max-width: 500px
+        }
+        .red-color {
+            color: #FF5630;
+        }
+        .red-background {
+            background-color: #FF5630;
+        }
+        .green-background {
+            background-color: green;
+        }
+        .grey-background {
+            background-color: #A9A9A9;
+        }
+        .cyan-background {
+            background-color: #25ACE1;
+        }
+        .buttons-margin {
+            margin-left: 21px;
+        }
+        .sup-small {
+            font-size: 150%;
+            color: #25ACE1;
+        }
+    </style>
+</head>
+<body>
+<img src="cid:icocoderfull" alt="Coderfull Icon" class="ico-coderfull" />
+<br/>
+<br/>
+<div class="wrapper">
+    <h2 class="title">
+        Team deck for <span th:text="${leadTitle}"/> now is ready!
+    </h2>
+
+    <p class="text with-margin">Hello <span th:text="${cpFirstName}"/>,</p>
+
+    <p class="text with-margin">The pre-sales team has completed your request. You'll find the team deck that includes the information you requested in the tool.</p>
+    <br/>
+
+    <p class="text with-margin">Our team look forward to assisting you with any future requests.</p>
+    <br/>
+
+
+    <br/>
+    <a th:href="${dashboardUrl} + '/sales/leads/' + ${leadId} + '?selectedTab=cp-request'"><button class="check-button">
+        Open team deck
+    </button></a>
+    <br/>
+
+    <p class="text-label">Regards,</p>
+    <a class="company-link" href="http://coderfull.com/">
+        <b>Coderfull.com</b>
+    </a>
+
+</div>
+</body>
+</html>
