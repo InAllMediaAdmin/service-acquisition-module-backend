@@ -623,12 +623,16 @@ create table if not exists team_request
     team_proposal_id              bigint       null,
     modal_proposal_status         text         null,
     customer_lead_id              bigint       null,
+    industry_id                   bigint       null,
+    share_count                   bigint       NOT NULL DEFAULT 0,
     constraint FK_team_request_customer_lead_id
     foreign key (customer_lead_id) references customer_lead (id),
     constraint FKs5sofls1sjvq00n9lfb2kyxm6
     foreign key (team_proposal_id) references team_proposal (id),
     constraint FKtctko3jheeky34b3lj7kmmwij
-    foreign key (team_id) references team (id)
+    foreign key (team_id) references team (id),
+    constraint FK_team_request_industry_id
+    foreign key (industry_id) references industry (id)
     );
 
 create table if not exists due_date
