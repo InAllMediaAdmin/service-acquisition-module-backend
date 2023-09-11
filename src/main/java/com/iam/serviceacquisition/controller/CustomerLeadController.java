@@ -1,6 +1,5 @@
 package com.iam.serviceacquisition.controller;
 
-
 import com.iam.serviceacquisition.common.enums.TeamRequestFilterStatus;
 import com.iam.serviceacquisition.common.enums.TeamRequestStatus;
 import com.iam.serviceacquisition.domain.CustomerLead;
@@ -11,6 +10,7 @@ import com.iam.serviceacquisition.domain.dto.CardTeamRequestDTO;
 import com.iam.serviceacquisition.domain.dto.CustomerLeadDTO;
 import com.iam.serviceacquisition.domain.dto.TeamProposalDTO;
 import com.iam.serviceacquisition.domain.teamrequest.CPRequest;
+import com.iam.serviceacquisition.mapper.CustomerLeadMapper;
 import com.iam.serviceacquisition.service.ActivityService;
 import com.iam.serviceacquisition.service.CommentService;
 import com.iam.serviceacquisition.service.CustomerLeadService;
@@ -23,8 +23,6 @@ import io.swagger.annotations.ApiOperation;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -49,13 +47,13 @@ public class CustomerLeadController {
     private final ActivityService activityService;
     private final CommentService commentService;
 
-    private final ModelMapper mapper;
+    private final CustomerLeadMapper mapper;
 
     @ApiOperation(value = "Retrieve Customer Lead by Id", produces = APPLICATION_JSON_VALUE)
     @GetMapping(value = "/{id}")
     public ResponseEntity<CustomerLeadDTO> findById(@PathVariable("id") final Optional<CustomerLead> customerLead) {
         if (customerLead.isEmpty()) return ResponseEntity.notFound().build();
-        return ResponseEntity.status(HttpStatus.OK).body(mapper.map(customerLead.get(), CustomerLeadDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(mapper.mapToCustomerLeadDTO(customerLead.get()));
     }
 
     @ApiOperation(value = "Create or Update Customer Lead")
@@ -63,13 +61,13 @@ public class CustomerLeadController {
     public ResponseEntity<CustomerLeadDTO> createOrUpdateCustomerLead(@Valid @RequestBody final CustomerLeadDTO customerLeadDTO) {
         log.info("Creating or Updating Customer Lead {} ", customerLeadDTO);
 
-        CustomerLead customerLeadMapped = mapper.map(customerLeadDTO, CustomerLead.class);
+        CustomerLead customerLeadMapped = mapper.mapToCustomerLeadEntity(customerLeadDTO);
         if (isNull(customerLeadMapped.getClientPartner())){
             UserDTO currentUser = userAccountService.getCurrentUser();
             customerLeadMapped.setClientPartner(currentUser.getId());
         }
 
-        return ResponseEntity.ok(mapper.map(customerLeadService.createCustomerLead(customerLeadMapped), CustomerLeadDTO.class));
+        return ResponseEntity.ok(mapper.mapToCustomerLeadDTO(customerLeadService.createCustomerLead(customerLeadMapped)));
     }
 
     @ApiOperation(
@@ -129,7 +127,7 @@ public class CustomerLeadController {
         Page<CustomerLead> customerLeadPage = customerLeadService.findCustomerLeadLandingPage(pageable,
                 companyName, teamRequestStatusListFilter, industryId, contactName, leadProjectName, isArchived, lastRequestStatus);
 
-        return ResponseEntity.ok(customerLeadPage.map(customerLead -> mapper.map(customerLead, CustomerLeadDTO.class)));
+        return ResponseEntity.ok(customerLeadPage.map(mapper::mapToCustomerLeadDTO));
 
     }
 
