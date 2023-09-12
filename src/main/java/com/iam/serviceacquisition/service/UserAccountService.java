@@ -70,4 +70,17 @@ public class UserAccountService {
         }
     }
 
+    public List<UserDTO> getUsersWithFullNameContainingAndRole(String fullName, UserRole role) {
+        try {
+            Response<List<UserDTO>> response = userAccountClient.getUsersWithFullNameContainingAndRole(fullName, role).execute();
+            HttpStatus statusCode = HttpStatus.valueOf(response.code());
+            if (statusCode.is2xxSuccessful()) {
+                return response.body();
+            } else {
+                throw new ResponseStatusException(statusCode, response.message());
+            }
+        } catch (Exception e) {
+            throw new ValidationException("Get Users with full name and role Error", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        }
+    }
 }

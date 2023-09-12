@@ -38,6 +38,8 @@ spring:
     password: root
     schemas: service-acquisition
 iam:
+  mail:
+    dashboard-url: ${dashboard_url:http://localhost:8085}
   user:
     account-url: ${account-url:http://localhost:8086}
 ---
@@ -66,6 +68,8 @@ spring:
     schemas: service-acquisition-qa
 
 iam:
+  mail:
+    dashboard-url: ${dashboard_url:https://stage.coderfull.com}
   user:
     account-url: ${account-url:https://qa-user-account-service.coderfull.com}
 ---
@@ -93,6 +97,8 @@ spring:
     password: ${password}
     schemas: service-acquisition-stage
 iam:
+  mail:
+    dashboard-url: ${dashboard_url:https://stage.coderfull.com}
   user:
     account-url: ${account-url:https://stage-user-account-service.coderfull.com}
 ---
@@ -120,6 +126,8 @@ spring:
     password: ${password}
     schemas: service-acquisition-prod
 iam:
+  mail:
+    dashboard-url: ${dashboard_url:https://uat.coderfull.com}
   user:
     account-url: ${account-url:https://uat-user-account-service.coderfull.com}
 ---
@@ -148,5 +156,7 @@ spring:
     schemas: service-acquisition-prod
 
 iam:
+  mail:
+    dashboard-url: ${dashboard_url:https://platform.coderfull.com}
   user:
     account-url: ${account-url:https://user-account-service.coderfull.com}

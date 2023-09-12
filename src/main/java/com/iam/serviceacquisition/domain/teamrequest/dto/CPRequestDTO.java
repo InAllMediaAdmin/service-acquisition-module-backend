@@ -4,16 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iam.serviceacquisition.domain.dto.CommentDTO;
 import com.iam.serviceacquisition.domain.dto.IndustryDTO;
-import com.iam.serviceacquisition.domain.dto.TechnologyDTO;
+import com.iam.serviceacquisition.domain.dto.SimpleDTO;
 import com.iam.serviceacquisition.domain.dto.TimeZoneDTO;
 import com.iam.user.account.common.model.UserDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 @AllArgsConstructor
 @NoArgsConstructor(force = true, access = AccessLevel.PUBLIC)
@@ -48,7 +47,7 @@ public class CPRequestDTO {
     private Instant updatedAt;
 
     @JsonProperty("technologies")
-    private List<TechnologyDTO> technologies = newArrayList();
+    private List<SimpleDTO> technologies = new ArrayList<>();
 
     @JsonProperty("min_team_composition")
     private Integer minTeamComposition;
