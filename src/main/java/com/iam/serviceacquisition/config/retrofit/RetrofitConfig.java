@@ -1,8 +1,8 @@
-package com.iam.serviceacquisition.config;
+package com.iam.serviceacquisition.config.retrofit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.iam.serviceacquisition.config.retrofit.HttpRetrofitInterceptor;
 import com.iam.user.account.common.api.UserAccountClient;
-import com.iam.user.account.common.interceptor.HttpRetrofitInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

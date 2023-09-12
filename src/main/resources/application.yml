@@ -39,7 +39,7 @@ spring:
     schemas: service-acquisition
 iam:
   user:
-    account-url: ${account-url:https://qa-user-account-service.coderfull.com}
+    account-url: ${account-url:http://localhost:8086}
 ---
 spring:
   config:
