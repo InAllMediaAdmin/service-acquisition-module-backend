@@ -1,0 +1,139 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <style>
+        .border-detail {
+            width: 4px;
+            background-color: #25ACE1;
+            border: 1px solid #25ACE1;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .check-button {
+            background-color: #25ACE1;
+            border: none;
+            border-radius: 3px;
+            color: #FFFFFF;
+            padding: 15px 40px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .company-link {
+            color: #25ACE1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            display: block;
+            margin-top: 23px;
+        }
+        .data-column {
+            padding: 13px 15px;
+        }
+        .data-container {
+            overflow: hidden;
+            border: 1.5px solid #D9D9D9;
+            border-left: transparent;
+            border-radius: 5px;
+            margin-bottom: 33px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 18px;
+        }
+        html, body{
+            font-family: 'Roboto', sans-serif;
+            height: 100%;
+        }
+        .key-label {
+            font-weight: 600;
+            min-width: 83px;
+        }
+        .image-logo {
+            height: 29px;
+            width: 70px;
+            margin-bottom: 43px;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            font-size: 14px;
+        }
+        .text {
+            font-size: 13px;
+            color: #11264E;
+            line-height: 18px;
+            margin: 0 0 5px 0;
+        }
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            color: #25ACE1;
+            font-weight: 400;
+            font-size: 36px;
+            line-height: 42px;
+            margin-top: 0;
+            margin-bottom: 27px;
+        }
+        .with-margin {
+            margin-bottom: 10px;
+        }
+        .wrapper {
+            max-width: 500px
+        }
+        .ico-coderfull {
+            height: 20px;
+            width: 100px;
+            top: 5px;
+            position: relative;
+          }
+    </style>
+</head>
+<body>
+<img src="cid:icocoderfull" alt="Coderfull Icon" class="ico-coderfull"/>
+<br>
+<br>
+<div class="wrapper">
+    <h2 class="title">
+        New Team Request!
+    </h2>
+    <p class="text">Hi <span th:text="${psFirstName}"></span>,</p><br>
+    <p class="text">You have just received a new Team Request made by <span th:text="${cpFirstName}"></span>, Please review the request and provide a response as soon as possible.</p><br>
+    <div class="data-container">
+        <div class="border-detail"></div>
+        <div class="data-column">
+            <div class="row with-margin">
+                <label class="key-label">Team size</label>
+                <label class="text"><span th:text="${teamSize}"></span></label>
+            </div>
+            <div class="row with-margin">
+                <label class="key-label">Tech stack</label>
+                <label class="text"><span th:text="${technology}"></span></label>
+            </div>
+            <div class="row with-margin">
+                <label class="key-label">Industry</label>
+                <label class="text"><span th:text="${industry}"></span></label>
+            </div>
+            <div class="row">
+                <label class="key-label">Rate</label>
+                <label class="text"><span th:text="${rate}"></span></label>
+            </div>
+        </div>
+    </div>
+    <a th:href="${dashboardUrl} + '/presales/'">
+        <button class="check-button">
+            Check team request
+        </button>
+    </a>
+    <p class="text">Regards</p>
+    <p class="text">In All Media Team</p>
+    <a class="company-link" href="#">
+        inallmedia.com
+    </a>
+</div>
+</body>
+</html>
