@@ -2,6 +2,7 @@ package com.iam.serviceacquisition.domain;
 
 import com.iam.serviceacquisition.common.enums.SearchPositionSlotType;
 import com.iam.serviceacquisition.common.enums.TalentLevel;
+import com.iam.serviceacquisition.domain.dto.TalentDTO;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -72,24 +73,9 @@ public class SearchPositionSlot {
         return this;
     }
 
-    public boolean matchTalentRequirementsByRole(Talent talent) {
-        return talent.getRoles().stream().anyMatch(r -> this.defaultRoleId.equals(r))
-                && this.mainTechnologies.stream().map(Technology::getId)
-                .anyMatch(t -> talent.getMainTechnologies().stream().map(Technology::getId).collect(toList()).contains(t))
-                && this.seniority.getId() == talent.getLevel().getId();
-
-    }
-
-    public boolean matchTalentRequirements(Talent talent) {
-        List<Long> talentsIds = this.mainTechnologies.stream().map(Technology::getId).collect(toList());
-        return talentsIds.stream().anyMatch(id ->
-                talent.getMainTechnologies().stream().map(Technology::getId).collect(toList()).contains(id))
-                && this.seniority.getId() == talent.getLevel().getId();
-    }
-
-    public static SearchPositionSlot from(Talent talent) {
+    public static SearchPositionSlot from(TalentDTO talent) {
         return SearchPositionSlot.builder()
-                .seniority(talent.getLevel())
+                .seniority(TalentLevel.fromId(talent.getLevel().getId()))
                 .mainTechnologies(talent.getMainTechnologies().stream()
                         .map(tech -> Technology.builder().id(tech.getId()).build()).collect(toList()))
                 .build();

@@ -1,10 +1,10 @@
 package com.iam.serviceacquisition.domain;
 
 import com.iam.serviceacquisition.domain.activity.Activity;
-import com.iam.serviceacquisition.domain.talentresume.TalentResume;
+import com.iam.serviceacquisition.domain.dto.TalentDTO;
+import jakarta.persistence.*;
 import lombok.*;
 
-import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,14 +33,11 @@ public class TeamPositionSlot {
     @EqualsAndHashCode.Exclude
     private Team team;
 
-    @ManyToOne
-    @JoinColumn(name = "talent_id")
-    private Talent talent;
+    @Column(name = "talent_id")
+    private Long talentId;
 
-    @OneToOne
-    @JoinColumn(name="talent_resume_id")
-    @EqualsAndHashCode.Exclude
-    private TalentResume talentResume;
+    @Transient
+    private TalentDTO talent;
 
     @OneToMany(mappedBy = "teamPositionSlot", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

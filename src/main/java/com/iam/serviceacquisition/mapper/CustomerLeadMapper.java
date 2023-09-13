@@ -3,6 +3,7 @@ package com.iam.serviceacquisition.mapper;
 import com.iam.serviceacquisition.domain.CustomerLead;
 import com.iam.serviceacquisition.domain.Technology;
 import com.iam.serviceacquisition.domain.dto.CustomerLeadDTO;
+import com.iam.serviceacquisition.domain.dto.TechnologyDTO;
 import com.iam.serviceacquisition.domain.teamrequest.CPRequest;
 import com.iam.serviceacquisition.domain.teamrequest.TeamRequest;
 import com.iam.serviceacquisition.service.CPRequestService;
@@ -52,7 +53,7 @@ public class CustomerLeadMapper {
             lastTeamRequest.ifPresent(tr -> {
                 dto.setStatusLastTeamRequest(tr.getStatus());
 
-                List<Technology> mainTechnologies = tr.getTeam().getTeamPositionSlots().stream()
+                List<TechnologyDTO> mainTechnologies = tr.getTeam().getTeamPositionSlots().stream()
                         .flatMap(tps -> tps.getTalent().getMainTechnologies().stream())
                         .collect(Collectors.toList());
                 dto.setMainTechnologiesLastTeamRequest(mainTechnologies);
