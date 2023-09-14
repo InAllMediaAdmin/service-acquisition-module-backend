@@ -49,7 +49,7 @@ public class CustomerLeadDTO {
     private TeamRequestStatus statusLastTeamRequest;
 
     @JsonProperty(value = "main_technologies_last_team_request")
-    private List<Technology> mainTechnologiesLastTeamRequest;
+    private List<TechnologyDTO> mainTechnologiesLastTeamRequest;
 
     @JsonProperty("blended_rate_last_team_request")
     private BigDecimal blendedRateLastTeamRequest;

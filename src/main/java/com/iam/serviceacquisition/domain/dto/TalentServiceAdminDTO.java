@@ -2,7 +2,6 @@ package com.iam.serviceacquisition.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iam.serviceacquisition.common.enums.Avatar;
-import com.iam.serviceacquisition.domain.Talent;
 import com.iam.user.account.common.model.TalentRoleDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
@@ -78,7 +77,7 @@ public class TalentServiceAdminDTO {
     private boolean createdInServiceManager;
 
 
-    public static TalentServiceAdminDTO createTalentServiceAdminDTO(Talent talent, TalentRoleDTO talentRoleDTO) {
+    public static TalentServiceAdminDTO createTalentServiceAdminDTO(TalentDTO talent, TalentRoleDTO talentRoleDTO) {
         TalentServiceAdminDTO talentServiceAdminDTO = TalentServiceAdminDTO.builder()
                 .avatar(talent.getAvatar())
                 .firstName(talent.getName())
@@ -86,7 +85,7 @@ public class TalentServiceAdminDTO {
                 .defaultRole(talentRoleDTO)
                 .level(LevelDTO.builder()
                         .id(talent.getLevel().getId())
-                        .description(talent.getLevel().getLabel())
+                        .description(talent.getLevel().getDescription())
                         .build())
                 .timezone(TimeZoneDTO.builder()
                         .id(talent.getTimeZone().getId())
@@ -98,7 +97,6 @@ public class TalentServiceAdminDTO {
                         .areaCode(talent.getPhone().getAreaCode())
                         .phoneNumber(talent.getPhone().getPhoneNumber())
                         .build())
-                .id(talent.getServiceCenterId())
                 .build();
 
         validateTalentServiceAdminDTO(talentServiceAdminDTO);

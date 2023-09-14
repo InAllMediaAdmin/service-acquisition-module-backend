@@ -1,6 +1,5 @@
 package com.iam.serviceacquisition.domain.activity;
 
-import com.iam.serviceacquisition.domain.Talent;
 import com.iam.serviceacquisition.domain.TeamPositionSlot;
 import com.iam.serviceacquisition.domain.teamrequest.CPRequest;
 import com.iam.serviceacquisition.domain.teamrequest.TeamRequest;
